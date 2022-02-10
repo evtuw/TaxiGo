@@ -48,13 +48,28 @@ export default function MessageItem({data}: Props) {
             borderRadius: 16,
             alignSelf: isMe ? 'flex-start' : 'flex-end',
             maxWidth: '70%',
-            borderBottomRightRadius: isMe ? 16 : !spaceMessage ? 8 : 0,
-            borderBottomLeftRadius: !isMe ? 16 : spaceMessage ? 0 : 8,
+            borderBottomRightRadius: isMe ? 16 : !spaceMessage ? 4 : 0,
+            borderBottomLeftRadius: !isMe ? 16 : spaceMessage ? 0 : 4,
           }}>
           <Text style={{color: '#FFF', lineHeight: 20, fontSize: 13}}>
             {message}
           </Text>
         </View>
+        {data?.currentMessage?.user_id !== data?.nextMessage?.user_id && (
+          <View
+            style={[
+              styles.triangle,
+              {
+                borderBottomColor: isMe ? color.primaryColor : '#34495E',
+                transform: [{rotate: isMe ? '230deg' : '130deg'}],
+                marginTop: -14,
+                marginLeft: isMe ? -4 : 0,
+                marginRight: isMe ? 0 : -4,
+                alignSelf: isMe ? 'flex-start' : 'flex-end',
+              },
+            ]}
+          />
+        )}
       </TouchableOpacity>
       <View style={{width: '100%'}}>
         <AnimatedLayout
@@ -62,7 +77,7 @@ export default function MessageItem({data}: Props) {
           viewContent={
             <Text
               style={{
-                textAlign: isMe ? 'left':'right',
+                textAlign: isMe ? 'left' : 'right',
                 color: color.borderColor,
                 fontSize: 11,
                 marginVertical: 4,
@@ -126,5 +141,16 @@ const styles = StyleSheet.create({
   },
   viewAnimation: {
     overflow: 'hidden',
+  },
+  triangle: {
+    width: 0,
+    height: 0,
+    backgroundColor: 'transparent',
+    borderStyle: 'solid',
+    borderLeftWidth: 8,
+    borderRightWidth: 10,
+    borderBottomWidth: 22,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
   },
 });

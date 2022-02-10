@@ -1,5 +1,6 @@
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
+import Icon from 'react-native-vector-icons/Ionicons'
 import color from '../assets/color';
 
 interface Props {
@@ -34,10 +35,7 @@ export default function Header({
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <TouchableOpacity onPress={goBack} style={{width: 40}}>
             {/* change to icon */}
-          <Image
-            style={{width: 30, height: 30, tintColor: '#FFF'}}
-            source={{uri: 'https://i.dlpng.com/static/png/6787200_preview.png'}}
-          />
+          <Icon name="arrow-back" size={30} color="#FFF"/>
         </TouchableOpacity>
         <Text
           style={{

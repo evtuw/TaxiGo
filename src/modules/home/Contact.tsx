@@ -1,8 +1,10 @@
 import {View, Text, TextInput, Image} from 'react-native';
 import React from 'react';
+import Icon from 'react-native-vector-icons/Ionicons'
 import Header from '../../core/components/Header';
 import ContactList from './list/ContactList';
 import {useNavigation} from '@react-navigation/native';
+import color from "../../core/assets/color";
 
 export default function Contact() {
   const navigation = useNavigation();
@@ -26,12 +28,7 @@ export default function Contact() {
               justifyContent: 'center',
             }}>
             {/* change to icon */}
-            <Image
-              source={{
-                uri: 'https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-512.png',
-              }}
-              style={{width: 20, height: 20}}
-            />
+            <Icon name="search-outline" size={16} color={color.borderColor}/>
             <TextInput
               placeholder="Search"
               style={{flex: 1, padding: 0, fontSize: 12, marginLeft: 8}}

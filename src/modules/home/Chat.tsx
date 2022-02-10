@@ -1,6 +1,6 @@
 import {View, Text, Image, KeyboardAvoidingView, Platform} from 'react-native';
 import React from 'react';
-import moment from "moment";
+import Icon from 'react-native-vector-icons/Ionicons'
 import {useNavigation, useRoute} from '@react-navigation/native';
 import Header from '../../core/components/Header';
 import color from '../../core/assets/color';
@@ -49,12 +49,7 @@ export default function Chat() {
               shadowOpacity: 0.5,
               shadowRadius: 3,
             }}>
-            <Image
-              source={{
-                uri: 'https://icons-for-free.com/iconfiles/png/512/phone-131964784943439862.png',
-              }}
-              style={{width: 18, height: 18, tintColor: color.primaryColor}}
-            />
+          <Icon name="call-outline" color={color.primaryColor} size={16}/>
           </View>
           <View
             style={{
