@@ -5,11 +5,15 @@ import AuthScreen from './src/modules/auth';
 import ConfirmOTPScreen from './src/modules/auth/ConfirmOTP';
 import ContactScreen from './src/modules/home/Contact';
 import ChatScreen from './src/modules/home/Chat';
-
+import SplashScreen from 'react-native-splash-screen';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  React.useEffect(() => {
+    SplashScreen.hide();
+  });
   return (
+    // @ts-ignore
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="Auth"
