@@ -87,7 +87,7 @@ export default function MessageList({data}: Props) {
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={{padding: 16}}
+      contentContainerStyle={{padding: 16, backgroundColor:"white"}}
     />
   );
 }

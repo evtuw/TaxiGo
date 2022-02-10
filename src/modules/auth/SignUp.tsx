@@ -9,12 +9,20 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import color from '../../core/assets/color';
+import {useNavigation} from '@react-navigation/native';
 
 const Triangle = () => {
   return <View style={[styles.triangle]} />;
 };
 
 export default function SignUp() {
+  const navigation = useNavigation();
+
+  const confirmOtp = () =>
+    navigation.navigate('ConfirmOTP', {
+      mobile: '',
+    });
+
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <View style={{padding: 16}}>
@@ -87,7 +95,8 @@ export default function SignUp() {
             shadowOpacity: 1.5,
             shadowRadius: 5,
             elevation: 10,
-          }}>
+          }}
+          onPress={confirmOtp}>
           <Text
             style={{
               color: 'white',

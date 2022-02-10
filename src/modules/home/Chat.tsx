@@ -141,7 +141,7 @@ export default function Chat() {
 
   return (
     <KeyboardAvoidingView
-      style={{flex: 1}}
+      style={{flex: 1, backgroundColor:'white'}}
       behavior={Platform.OS === 'ios' ? 'padding' : null}
       enabled>
       <Header title="" goBack={goBack} customHeader={customHeader()} />
