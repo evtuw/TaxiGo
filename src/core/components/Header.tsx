@@ -1,6 +1,6 @@
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
-import Icon from 'react-native-vector-icons/Ionicons'
+import Icon from 'react-native-vector-icons/Ionicons';
 import color from '../assets/color';
 
 interface Props {
@@ -16,7 +16,7 @@ interface Props {
 export default function Header({
   title,
   titleColor,
-  showBackIcon,
+  showBackIcon = true,
   customHeader,
   headerHeight,
   rightComponent,
@@ -33,9 +33,16 @@ export default function Header({
         paddingBottom: 12,
       }}>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <TouchableOpacity onPress={goBack} style={{width: 40}}>
-            {/* change to icon */}
-          <Icon name="arrow-back" size={30} color="#FFF"/>
+        <TouchableOpacity
+          onPress={goBack}
+          style={{width: 40}}
+          disabled={!showBackIcon}>
+          {/* change to icon */}
+          <Icon
+            name="arrow-back"
+            size={30}
+            color={showBackIcon ? '#FFF' : color.primaryColor}
+          />
         </TouchableOpacity>
         <Text
           style={{
@@ -47,7 +54,11 @@ export default function Header({
           }}>
           {title}
         </Text>
-        <View style={{width: 40}}>{rightComponent}</View>
+        {rightComponent ? (
+          <View>{rightComponent}</View>
+        ) : (
+          <View style={{width: 40}} />
+        )}
       </View>
       {customHeader}
     </View>

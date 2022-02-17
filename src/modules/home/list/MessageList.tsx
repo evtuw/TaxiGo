@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function MessageList({data}: Props) {
-  const keyExtractor = (item: any) => String(item.id);
+  const keyExtractor = (item: any, index: number) => String(index);
 
   const convertMessage = (item, index) => {
     const newItem: any = {};
@@ -35,6 +35,7 @@ export default function MessageList({data}: Props) {
 
   return (
     <FlatList
+      inverted
       data={data}
       renderItem={renderItem}
       keyExtractor={keyExtractor}

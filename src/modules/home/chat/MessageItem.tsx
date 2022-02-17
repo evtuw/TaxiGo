@@ -20,12 +20,12 @@ export default function MessageItem({data}: Props) {
     return `${day} ${moment(date, 'YYYY/MM/DD HH:mm:ss ZZ').format('HH:mm')}`;
   };
   const {user_id, message, sent_at} = data.currentMessage;
-  const isMe = user_id === 1;
+  const isMe = user_id === 2;
   const spaceMessage =
-    data?.currentMessage?.user_id !== data?.nextMessage?.user_id;
+    data?.currentMessage?.user_id !== data?.previousMessage?.user_id;
   const day = convertDate(sent_at);
   const time = convertToDay(sent_at);
-  const dayPrev = convertDate(data?.previousMessage?.sent_at);
+  const dayPrev = convertDate(data?.nextMessage?.sent_at);
   return (
     <View>
       {dayPrev !== day && (
@@ -35,12 +35,15 @@ export default function MessageItem({data}: Props) {
       )}
       <TouchableOpacity
         activeOpacity={0.9}
-        onPress={() => messageItem.current._onCollapse()}>
+        onPress={() => messageItem.current._onCollapse()}
+        // disabled={isMe}
+      >
+
         <View
           style={{
             backgroundColor: isMe ? color.primaryColor : '#34495E',
             marginTop:
-              data?.currentMessage?.user_id !== data?.previousMessage?.user_id
+              data?.currentMessage?.user_id !== data?.nextMessage?.user_id
                 ? 16
                 : 2,
             paddingHorizontal: 12,
@@ -55,7 +58,7 @@ export default function MessageItem({data}: Props) {
             {message}
           </Text>
         </View>
-        {data?.currentMessage?.user_id !== data?.nextMessage?.user_id && (
+        {data?.currentMessage?.user_id !== data?.previousMessage?.user_id && (
           <View
             style={[
               styles.triangle,
@@ -82,7 +85,7 @@ export default function MessageItem({data}: Props) {
                 fontSize: 11,
                 marginVertical: 4,
               }}>
-              Read {time}
+              {time}
             </Text>
           }
         />

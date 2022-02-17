@@ -4,9 +4,18 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import color from '../../../core/assets/color';
 
-interface Props {}
+interface Props {
+  onSend: (text: string) => void;
+}
 
-export default function FooterChat({}: Props) {
+export default function FooterChat({onSend}: Props) {
+  const [message, setMessage] = React.useState('');
+
+  const onSendMessage = () => {
+    onSend(message);
+    setMessage('');
+  };
+
   return (
     <View
       style={{
@@ -20,12 +29,17 @@ export default function FooterChat({}: Props) {
         marginVertical: 16,
         marginHorizontal: 16,
       }}>
-      <TextInput placeholder="Aaa..." style={{flex: 1}} />
+      <TextInput
+        placeholder="Aaa..."
+        style={{flex: 1}}
+        value={message}
+        onChangeText={(text: string) => setMessage(text)}
+      />
       <TouchableOpacity>
         {/* icon or text */}
         <EntypoIcon name="emoji-happy" size={20} color={color.borderColor} />
       </TouchableOpacity>
-      <TouchableOpacity style={{marginLeft: 10}}>
+      <TouchableOpacity style={{marginLeft: 10}} onPress={onSendMessage}>
         {/* icon or text */}
         <Icon name="send" size={20} color={color.borderColor} />
       </TouchableOpacity>
